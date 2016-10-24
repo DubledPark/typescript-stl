@@ -139,6 +139,14 @@ namespace std.base
 			return new SetReverseIterator<T>(this.begin());
 		}
 
+		/**
+		 * @inheritdoc
+		 */
+		public next(): IteratorResult<T>
+		{
+			return this.data_.next();
+		}
+
 		/* ---------------------------------------------------------
 			ELEMENTS
 		--------------------------------------------------------- */

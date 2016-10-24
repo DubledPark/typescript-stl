@@ -62,6 +62,11 @@ namespace std.base
 		 */
 		private size_: number;
 
+		/**
+		 * @hidden
+		 */
+		private it_: BidrectionalIterator;
+
 		/* ---------------------------------------------------------
 			CONSTRUCTORS
 		--------------------------------------------------------- */
@@ -79,6 +84,9 @@ namespace std.base
 
 			this.begin_ = this.end_;
 			this.size_ = 0;
+
+			// "FOR OF" ITERATOR
+			this.it_ = this.end_;
 		}
 
 		protected abstract _Create_iterator(prev: BidrectionalIterator, next: BidrectionalIterator, val: T): BidrectionalIterator;
@@ -148,6 +156,18 @@ namespace std.base
 		public back(): T
 		{
 			return this.end_.prev().value;
+		}
+
+		/**
+		 * @inheritdoc
+		 */
+		public next(): IteratorResult<T>
+		{
+			this.it_ = this.it_.next() as BidrectionalIterator;
+			if (this.it_ == this.end_)
+				return { done: true, value: undefined };
+			else
+				return { done: false, value: this.it_.value };
 		}
 
 		/* =========================================================

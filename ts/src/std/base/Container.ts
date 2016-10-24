@@ -140,5 +140,12 @@ namespace std.base
 			this.assign(obj.begin(), obj.end());
 			obj.assign(supplement.begin(), supplement.end());
 		}
+
+		public abstract next(): IteratorResult<T>;
+
+		[Symbol.iterator](): Container<T>
+		{
+			return this;
+		}
 	}
 }

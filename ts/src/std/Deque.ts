@@ -129,6 +129,11 @@ namespace std
 			return Math.floor(this.capacity_ / Deque.ROW);
 		}
 
+		/**
+		 * @hidden
+		 */
+		private index_: number;
+
 		/* =========================================================
 			CONSTRUCTORS & SEMI-CONSTRUCTORS
 				- CONSTRUCTORS
@@ -214,6 +219,8 @@ namespace std
 
 				this.assign(begin, end);
 			}
+
+			this.index_ = 0;
 		}
 
 		/* ---------------------------------------------------------
@@ -433,6 +440,21 @@ namespace std
 			let lastArray: Array<T> = this.matrix_[this.matrix_.length - 1];
 
 			return lastArray[lastArray.length - 1];
+		}
+
+		/**
+		 * @inheritdoc
+		 */
+		public next(): IteratorResult<T>
+		{
+			let index: number = this.index_++;
+			if (index == this.size())
+			{
+				this.index_ = 0;
+				return { done: true, value: undefined };
+			}
+			else
+				return { done: false, value: this.at(index) };
 		}
 
 		/**

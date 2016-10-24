@@ -192,6 +192,14 @@ namespace std.base
 			return new MapReverseIterator<Key, T>(this.begin());
 		}
 
+		/**
+		 * @inheritdoc
+		 */
+		public next(): IteratorResult<Pair<Key, T>>
+		{
+			return this.data_.next();
+		}
+
 		/* ---------------------------------------------------------
 			ELEMENTS
 		--------------------------------------------------------- */
