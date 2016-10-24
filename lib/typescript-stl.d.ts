@@ -2785,6 +2785,8 @@ declare namespace std.base {
          * @inheritdoc
          */
         swap(obj: IContainer<T>): void;
+        abstract next(): IteratorResult<T>;
+        [Symbol.iterator](): Container<T>;
     }
 }
 declare namespace std.base {
@@ -4439,6 +4441,10 @@ declare namespace std.base {
          */
         private size_;
         /**
+         * @hidden
+         */
+        private it_;
+        /**
          * Default Constructor.
          */
         protected constructor();
@@ -4471,6 +4477,10 @@ declare namespace std.base {
          * @inheritdoc
          */
         back(): T;
+        /**
+         * @inheritdoc
+         */
+        next(): IteratorResult<T>;
         /**
          * @inheritdoc
          */
@@ -4819,6 +4829,10 @@ declare namespace std.base {
          * @return A {@link MapReverseIterator reverse iterator} to the <i>reverse end</i> of the sequence
          */
         rend(): MapReverseIterator<Key, T>;
+        /**
+         * @inheritdoc
+         */
+        next(): IteratorResult<Pair<Key, T>>;
         /**
          * <p> Whether have the item or not. </p>
          *
@@ -5472,6 +5486,10 @@ declare namespace std.base {
          * @inheritdoc
          */
         rend(): SetReverseIterator<T>;
+        /**
+         * @inheritdoc
+         */
+        next(): IteratorResult<T>;
         /**
          * <p> Whether have the item or not. </p>
          *
@@ -7618,6 +7636,10 @@ declare namespace std {
          */
         private get_col_size();
         /**
+         * @hidden
+         */
+        private index_;
+        /**
          * <p> Default Constructor. </p>
          *
          * <p> Constructs an empty container, with no elements. </p>
@@ -7720,6 +7742,10 @@ declare namespace std {
          * @inheritdoc
          */
         back(): T;
+        /**
+         * @inheritdoc
+         */
+        next(): IteratorResult<T>;
         /**
         // Fetch row and column's index.
         /**
